@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--
+    Autore: Michele Salvemini
+    Classe: Seconda o Terza (primo approccio ai linguaggi C e C++)
+    Argomento: Operatori di assegnamento composti, pre/post incremento e decremento,
+               assegnazione all'interno di un'espressione (doppia assegnazione)
+    Obiettivo: Escape room a enigmi a risposta multipla per esercitarsi a tracciare
+               il valore delle variabili con questi operatori, con cronometro e punteggio
+    Versione: 2.2
+    Data: 11/10/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+    File: index.html (struttura) - style.css (stile) - script.js (comportamento)
+-->
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Michele Salvemini">
+        <meta name="description" content="Escape room di Halloween per esercitarsi con gli operatori di assegnamento composti, il pre e post incremento/decremento e l'assegnazione all'interno di un'espressione (doppia assegnazione) in C/C++.">
+        <meta name="keywords" content="informatica, programmazione, C, C++, operatori di assegnamento composti, pre-incremento, post-incremento, decremento, doppia assegnazione, modulo, escape room, ripasso, Halloween, liceo scientifico scienze applicate">
+        <title>🎃 Escape Room di Halloween</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+    </head>
+    <body>
+        <!-- ============================================================
+             STRUTTURA
+             ============================================================ -->
+
+        <!-- Contenitore delle particelle decorative, popolato dallo script -->
+        <div class="particles" id="particles"></div>
+
+        <div class="container">
+            <header>
+                <h1>🎃 ESCAPE ROOM DI HALLOWEEN 🎃</h1>
+                <p class="subtitle">Il Laboratorio del Codice Perduto</p>
+            </header>
+
+            <div class="intro">
+                <p>
+                    Sei intrappolato nel laboratorio abbandonato del
+                    <span class="highlight">Professor Byte</span>, uno scienziato pazzo
+                    scomparso la notte di Halloween.
+                </p>
+                <p>
+                    Per fuggire devi decifrare <span class="highlight"><span id="totale-enigmi">15</span> enigmi</span>
+                    uno alla volta. Ogni risposta corretta sblocca la domanda successiva
+                    e ti fa guadagnare una <strong>lettera</strong> della parola chiave finale.
+                </p>
+                <ul>
+                    <li>Leggi il codice con attenzione</li>
+                    <li>Scegli una delle tre risposte</li>
+                    <li>Se sbagli puoi riprovare, senza limiti di tentativi</li>
+                    <li>Risposta corretta: +<span id="regola-punti">5</span> pt. Errore: −<span id="regola-penalita">1</span> pt</li>
+                    <li>
+                        Bonus di +<span id="regola-bonus">10</span> pt se finisci entro
+                        <span id="regola-minuti">30</span> minuti con al massimo
+                        <span id="regola-errori">3</span> errori
+                    </li>
+                    <li>Il cronometro parte quando premi «Inizia l'avventura»</li>
+                    <li>Raccogli tutte le lettere per fuggire!</li>
+                </ul>
+                <p class="notice">
+                    🎃 Attività ludica per ripassare e studiare: barare è possibile, ma non serve a nulla.
+                    A questo punto, meglio non giocare.
+                </p>
+            </div>
+
+            <!-- Pulsante di avvio: il cronometro parte solo dopo aver letto le regole -->
+            <div class="start-area" id="start-area">
+                <button class="start-btn" id="start-btn" type="button">▶ Inizia l'avventura</button>
+            </div>
+
+            <!-- Cronometro, punteggio, errori e stato del bonus, aggiornati dallo script -->
+            <div class="stats-panel">
+                <div class="stat">⏱️ Tempo <span class="stat-value" id="timer-text">00:00</span></div>
+                <div class="stat">⭐ Punti <span class="stat-value" id="score-text">0</span></div>
+                <div class="stat">❌ Errori <span class="stat-value" id="errors-text">0</span></div>
+                <div class="bonus-badge bonus-ok" id="bonus-text">🏅 Bonus ancora possibile</div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-label">
+                    <span>🔮 Enigmi risolti</span>
+                    <span id="progress-text">0 / 15</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Area in cui lo script inserisce l'enigma corrente -->
+            <div id="card-area"></div>
+
+            <div class="letters-collected" id="letters-box">
+                <h3>🗝️ LETTERE RACCOLTE</h3>
+                <div class="letters-row" id="letters-row"></div>
+            </div>
+
+            <div class="final-section" id="final-section">
+                <h2>🗝️ IL LUCCHETTO SI È APERTO! 🗝️</h2>
+                <p class="final-label">La parola chiave che hai raccolto è:</p>
+                <div class="key-display" id="key-display"></div>
+                <table class="summary-table">
+                    <tr>
+                        <th>⏱️ Tempo impiegato</th>
+                        <td id="sum-tempo"></td>
+                    </tr>
+                    <tr>
+                        <th>✅ Risposte corrette</th>
+                        <td id="sum-corrette"></td>
+                    </tr>
+                    <tr>
+                        <th>❌ Errori commessi</th>
+                        <td id="sum-errori"></td>
+                    </tr>
+                    <tr>
+                        <th>🏅 Bonus</th>
+                        <td id="sum-bonus"></td>
+                    </tr>
+                    <tr class="total-row">
+                        <th>⭐ Punteggio totale</th>
+                        <td id="sum-totale"></td>
+                    </tr>
+                </table>
+                <div class="final-message">
+                    <span class="emoji">🚪✨</span>
+                    Complimenti! Hai sconfitto il Professor Byte e sei fuggito dal laboratorio.<br>
+                    La notte di Halloween è salva... per ora. 🎃
+                </div>
+                <p class="final-note">📸 Mostra questa schermata al docente per il riconoscimento del punteggio.</p>
+                <button class="reset-btn" id="reset-btn" type="button">🔄 Ricomincia l'avventura</button>
+            </div>
+
+            <footer class="license-note">
+                <p>
+                    © 2026 Michele Salvemini –
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>
+                </p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

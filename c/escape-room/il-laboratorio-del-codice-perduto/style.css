@@ -1,0 +1,800 @@
+/*
+    Autore: Michele Salvemini
+    Classe: Seconda o Terza (primo approccio ai linguaggi C e C++)
+    Argomento: Foglio di stile dell'Escape Room di Halloween
+    Obiettivo: Definire l'aspetto grafico della pagina (tema scuro arancione/verde)
+    Versione: 2.2
+    Data: 11/10/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+*/
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+/* Azzera i margini predefiniti e include padding e bordo nella larghezza degli elementi,
+   così le dimensioni dichiarate coincidono con quelle effettive */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(255, 100, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(150, 0, 200, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(0, 200, 100, 0.05) 0%, transparent 50%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+    /* Evita lo scorrimento orizzontale causato dalle particelle che escono dallo schermo */
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    /* Con z-index maggiore delle particelle il contenuto resta sopra lo sfondo animato */
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   PARTICELLE DECORATIVE
+   ============================================================ */
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Le particelle non devono intercettare i click destinati ai pulsanti sottostanti */
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.15;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.2;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================================
+   INTESTAZIONE
+   ============================================================ */
+
+header {
+    text-align: center;
+    padding: 30px 20px 25px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #ff6600;
+    position: relative;
+}
+
+/* Alone arancione sotto la linea dell'intestazione */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 10px;
+    background: #ff6600;
+    border-radius: 50%;
+    filter: blur(8px);
+}
+
+h1 {
+    font-size: 2.2rem;
+    color: #ff6600;
+    text-shadow: 0 0 20px rgba(255, 102, 0, 0.6), 0 0 40px rgba(255, 102, 0, 0.3);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    animation: flicker 3s infinite;
+}
+
+/* Simula una luce che sfarfalla */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    92% {
+        opacity: 1;
+    }
+    93% {
+        opacity: 0.6;
+    }
+    94% {
+        opacity: 1;
+    }
+    96% {
+        opacity: 0.7;
+    }
+    97% {
+        opacity: 1;
+    }
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #aa7700;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* ============================================================
+   INTRODUZIONE
+   ============================================================ */
+
+.intro {
+    background: rgba(30, 15, 5, 0.85);
+    border: 1px solid #552200;
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin-bottom: 25px;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    box-shadow: 0 0 30px rgba(255, 102, 0, 0.1), inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.intro p {
+    margin-bottom: 10px;
+}
+
+.intro .highlight {
+    color: #ff9944;
+    font-weight: bold;
+}
+
+.intro ul {
+    list-style: none;
+    padding-left: 10px;
+    margin-top: 8px;
+}
+
+/* La candela sostituisce il pallino standard dell'elenco */
+.intro ul li::before {
+    content: '🕯️ ';
+}
+
+/* ============================================================
+   BARRA DI AVANZAMENTO
+   ============================================================ */
+
+.progress-bar-container {
+    background: rgba(30, 15, 5, 0.9);
+    border: 1px solid #552200;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #cc8800;
+}
+
+.progress-track {
+    width: 100%;
+    height: 22px;
+    background: #1a0a00;
+    border-radius: 11px;
+    overflow: hidden;
+    border: 1px solid #442200;
+}
+
+/* La larghezza viene impostata da script.js in base agli enigmi risolti */
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff4400, #ff8800, #ffcc00);
+    border-radius: 11px;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 15px rgba(255, 136, 0, 0.5);
+}
+
+/* ============================================================
+   CARD DELL'ENIGMA
+   ============================================================ */
+
+.card {
+    background: rgba(20, 10, 5, 0.95);
+    border: 1px solid #442200;
+    border-radius: 14px;
+    padding: 28px 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Filo luminoso sul bordo superiore della card */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff6600, transparent);
+    opacity: 0.5;
+}
+
+.card.solved {
+    border-color: #00cc66;
+    box-shadow: 0 0 25px rgba(0, 204, 102, 0.2);
+}
+
+/* Scuotimento della card quando la risposta è sbagliata */
+.card.wrong {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-8px);
+    }
+    40% {
+        transform: translateX(8px);
+    }
+    60% {
+        transform: translateX(-5px);
+    }
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.card-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, #ff6600, #cc4400);
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    /* Impedisce al cerchio di schiacciarsi quando il titolo è lungo */
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+}
+
+.card-title {
+    font-size: 1.15rem;
+    color: #ffaa44;
+    font-weight: bold;
+}
+
+.card-scene {
+    font-style: italic;
+    color: #996633;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+
+/* Il codice è in un elemento <pre>: gli a capo e gli spazi del sorgente vengono rispettati */
+.card-code {
+    background: #0d0600;
+    border: 1px solid #331a00;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    color: #66ff99;
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+.card-question {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: #ddccaa;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   OPZIONI DI RISPOSTA
+   ============================================================ */
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Le opzioni sono elementi <button>: sono raggiungibili e attivabili anche da tastiera */
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 18px;
+    background: #1a0d00;
+    border: 1px solid #442200;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
+    color: #ccbbaa;
+    text-align: left;
+}
+
+.option:hover:not(:disabled) {
+    background: #2a1500;
+    border-color: #ff6600;
+    transform: translateX(5px);
+}
+
+/* Opzioni bloccate mentre si valuta la risposta */
+.option:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Le due regole seguenti stanno dopo :disabled per ripristinare la piena opacità */
+.option.selected-correct {
+    background: #003311;
+    border-color: #00cc66;
+    color: #66ff99;
+    opacity: 1;
+}
+
+.option.selected-wrong {
+    background: #330000;
+    border-color: #cc0000;
+    color: #ff6666;
+    opacity: 1;
+}
+
+.option-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #331a00;
+    border: 1px solid #663300;
+    font-weight: bold;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: #ffaa44;
+}
+
+/* ============================================================
+   FEEDBACK E PULSANTE "PROSSIMO"
+   ============================================================ */
+
+/* Il riquadro è nascosto finchè non riceve la classe .show da script.js */
+.feedback {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+    line-height: 1.5;
+}
+
+.feedback.show {
+    display: block;
+    animation: popIn 0.3s ease;
+}
+
+.feedback.correct {
+    background: rgba(0, 204, 102, 0.1);
+    border: 1px solid #00cc66;
+    color: #66ff99;
+}
+
+.feedback.wrong {
+    background: rgba(204, 0, 0, 0.1);
+    border: 1px solid #cc0000;
+    color: #ff6666;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Il pulsante compare solo dopo una risposta corretta (classe .show) */
+.next-btn {
+    display: none;
+    margin: 20px auto 0;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #ff6600, #cc4400);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 102, 0, 0.5);
+    transition: all 0.3s;
+}
+
+.next-btn.show {
+    display: block;
+    animation: popIn 0.4s ease;
+}
+
+.next-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 102, 0, 0.8);
+}
+
+/* ============================================================
+   LETTERE RACCOLTE
+   ============================================================ */
+
+.letters-collected {
+    background: rgba(30, 15, 5, 0.9);
+    border: 1px solid #552200;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.letters-collected h3 {
+    color: #cc8800;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.letters-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.letter-slot {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 1px solid #442200;
+    background: #0d0600;
+    color: #442200;
+    transition: all 0.4s;
+}
+
+.letter-slot.filled {
+    background: linear-gradient(135deg, #00cc66, #009944);
+    color: #ffffff;
+    border-color: #00cc66;
+    box-shadow: 0 0 15px rgba(0, 204, 102, 0.5);
+    animation: popIn 0.4s ease;
+}
+
+/* ============================================================
+   SEZIONE FINALE
+   ============================================================ */
+
+/* Nascosta fino al completamento di tutti gli enigmi (classe .show) */
+.final-section {
+    background: rgba(30, 15, 5, 0.95);
+    border: 2px solid #ff6600;
+    border-radius: 16px;
+    padding: 35px 30px;
+    margin-top: 30px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255, 102, 0, 0.2);
+    display: none;
+}
+
+.final-section.show {
+    display: block;
+    animation: popIn 0.6s ease;
+}
+
+.final-section h2 {
+    color: #ff6600;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(255, 102, 0, 0.5);
+}
+
+.final-label {
+    color: #cc8800;
+    margin-bottom: 10px;
+}
+
+.key-display {
+    font-size: 2.2rem;
+    letter-spacing: 12px;
+    color: #ffcc00;
+    font-weight: bold;
+    margin: 25px 0;
+    text-shadow: 0 0 20px rgba(255, 204, 0, 0.6);
+    /* Permette alla parola chiave di andare a capo su schermi stretti */
+    word-break: break-all;
+}
+
+.final-message {
+    font-size: 1.1rem;
+    color: #66ff99;
+    line-height: 1.7;
+    margin-top: 20px;
+}
+
+.final-message .emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.reset-btn {
+    display: block;
+    margin: 30px auto 10px;
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid #663300;
+    border-radius: 8px;
+    color: #996633;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reset-btn:hover {
+    border-color: #ff6600;
+    color: #ff6600;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.3);
+}
+
+.waiting-screen {
+    text-align: center;
+    padding: 60px 20px;
+    color: #663300;
+    font-style: italic;
+}
+
+/* ============================================================
+   AVVISO, AVVIO E PANNELLO DEL PUNTEGGIO
+   ============================================================ */
+
+/* Classe di servizio: nasconde un elemento (ad esempio l'area di avvio a partita iniziata) */
+.hidden {
+    display: none;
+}
+
+/* Riquadro dell'avviso sull'uso corretto dell'attività */
+.notice {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border: 1px dashed #ff6600;
+    border-radius: 8px;
+    background: rgba(255, 102, 0, 0.08);
+    color: #ffcc88;
+    font-style: italic;
+}
+
+.start-area {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.start-btn {
+    padding: 16px 48px;
+    background: linear-gradient(135deg, #ff6600, #cc4400);
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 102, 0, 0.5);
+    transition: all 0.3s;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(255, 102, 0, 0.8);
+}
+
+.stats-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 24px;
+    background: rgba(30, 15, 5, 0.9);
+    border: 1px solid #552200;
+    border-radius: 12px;
+    padding: 16px 22px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    color: #cc8800;
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+}
+
+.stat-value {
+    margin-left: 6px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.bonus-badge {
+    font-weight: bold;
+}
+
+/* Il colore cambia con lo stato del bonus; il testo dice comunque cosa succede (non solo il colore) */
+.bonus-ok {
+    color: #66ff99;
+}
+
+.bonus-perso {
+    color: #ff6666;
+}
+
+/* Tabella del riepilogo finale (tabella HTML nativa: più robusta di una griglia di div) */
+.summary-table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    min-width: 300px;
+    font-size: 1rem;
+    color: #ddccaa;
+}
+
+.summary-table th,
+.summary-table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid #442200;
+}
+
+.summary-table th {
+    text-align: left;
+    font-weight: normal;
+}
+
+.summary-table td {
+    text-align: right;
+    color: #ffcc00;
+}
+
+.summary-table .total-row th,
+.summary-table .total-row td {
+    border-top: 2px solid #ff6600;
+    border-bottom: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #66ff99;
+}
+
+.final-note {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #cc8800;
+}
+
+/* ============================================================
+   NOTA SULLA LICENZA
+   ============================================================ */
+
+.license-note {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aa7700;
+}
+
+.license-note a {
+    color: #ffaa44;
+}
+
+/* ============================================================
+   SCHERMI STRETTI (SMARTPHONE)
+   ============================================================ */
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 20px 18px;
+    }
+
+    .card-number {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .option {
+        font-size: 0.85rem;
+        padding: 10px 14px;
+    }
+
+    .key-display {
+        font-size: 1.3rem;
+        letter-spacing: 4px;
+    }
+
+    .intro {
+        padding: 18px;
+    }
+
+    .letter-slot {
+        width: 32px;
+        height: 32px;
+        font-size: 0.95rem;
+    }
+}
