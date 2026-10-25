@@ -762,3 +762,32 @@ code.inline {
         transition: none;
     }
 }
+
+/* Stile per il banner/link di GitHub in alto */
+.github-star-top {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.github-star-top a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #f1f1f1;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.github-star-top a:hover {
+    background-color: #e31b23; /* Un tocco di rosso in tema con i vampiri */
+    color: #ffffff;
+    border-color: #e31b23;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(227, 27, 35, 0.4);
+}
