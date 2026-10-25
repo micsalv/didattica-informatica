@@ -46,13 +46,6 @@ Il punteggio massimo è 85 punti (15 × 5 + 10 di bonus). I valori sono costanti
 | `style.css` | Stile grafico |
 | `script.js` | Enigmi, verifica delle risposte e logica del gioco |
 
-## Note tecniche
-
-- Le risposte corrette non sono scritte in chiaro nel codice: ogni enigma contiene un numero (impronta) calcolato dalla risposta giusta, che il gioco confronta con quella scelta.
-- Questo rende difficile leggere le risposte dal sorgente, ma non impossibile: è un gioco di ripasso, non uno strumento di verifica.
-- Cronometro e punteggio sono calcolati nel browser: possono essere alterati da chi lo desidera, quindi vanno intesi come un incentivo al ripasso e non come una prova di valutazione.
-- Per l'autore: per aggiungere o modificare un enigma occorre ricalcolare l'impronta con la funzione `calcolaImpronta` presente in `script.js`, usando come testo `identificativo:risposta corretta`.
-
 ## Cronologia
 
 | Versione | Data | Modifiche |
