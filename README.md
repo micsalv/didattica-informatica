@@ -43,13 +43,6 @@ didattica-informatica/
 Le attività sono pensate per l'esercitazione e il ripasso, non per la valutazione.
 Trattandosi di pagine eseguite nel browser, le risposte possono essere ricavate dal codice sorgente da chi lo desidera.
 
-## Aggiungere una nuova attività
-
-1. Creare la cartella `ambito/tipo/nome-attivita/` rispettando la convenzione dei nomi.
-2. Inserire `index.html`, `style.css`, `script.js` e un `README.md` dell'attività.
-3. Aggiungere una riga al catalogo di questo file.
-4. Eseguire il commit con un messaggio descrittivo, ad esempio: `Aggiunta escape room C: nome attività vX.Y`.
-
 ## Licenza
 
 © 2026 Michele Salvemini. Tutti i materiali del repository (contenuti didattici, codice HTML, CSS e JavaScript) sono rilasciati con licenza [Creative Commons Attribuzione – Non commerciale – Non opere derivate 4.0 Internazionale (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/). Vedi il file [LICENSE](LICENSE).
