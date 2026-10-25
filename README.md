@@ -1,20 +1,19 @@
 # Didattica Informatica
 
-Attività didattiche interattive (escape room, flashcard, quiz, mappe mentali e altro)
-per l'insegnamento dell'Informatica nel Liceo Scientifico – opzione Scienze Applicate.
+Attività didattiche interattive (escape room, flashcard, quiz, mappe mentali e altro) per l'insegnamento dell'Informatica nel Liceo Scientifico – opzione Scienze Applicate.
 
 **Autore:** Michele Salvemini
 
 ## Come si usa
 
-Le attività sono pagine web statiche: non serve installare nulla.
-Basta aprire il link dell'attività dal catalogo qui sotto, da computer o da smartphone.
+Le attività sono pagine web statiche: non serve installare nulla. Basta aprire il link dell'attività dal catalogo qui sotto, da computer o da smartphone.
 
 ## Catalogo
 
 | Ambito | Tipo | Attività | Argomento | Link |
 |---|---|---|---|---|
 | C | Escape room | Il Laboratorio del Codice Perduto | Operatori composti, pre/post incremento e decremento, doppia assegnazione | [Apri](https://micsalv.github.io/didattica-informatica/c/escape-room/il-laboratorio-del-codice-perduto/) |
+| HTML | Escape room | La Cripta del Conte Markup | HTML5: struttura del documento, testi, liste, tabelle, immagini e collegamenti | [Apri](https://micsalv.github.io/didattica-informatica/web/escape-room/la-cripta-del-conte-markup/) |
 
 ## Struttura del repository
 
@@ -24,24 +23,31 @@ Ogni attività si trova in una cartella con il percorso `ambito / tipo / attivit
 didattica-informatica/
 ├── README.md
 ├── LICENSE
-└── c/
+├── c/
+│   └── escape-room/
+│       └── il-laboratorio-del-codice-perduto/
+│           ├── index.html
+│           ├── style.css
+│           ├── script.js
+│           └── README.md
+└── html/
     └── escape-room/
-        └── il-laboratorio-del-codice-perduto/
+        └── la-cripta-del-conte-markup/
             ├── index.html
             ├── style.css
             ├── script.js
-            └── README.md
+            ├── README.md
+            └── immagini/
 ```
 
-- **Ambito:** `c`, `cpp`, `python`, `sql`, `web`, `reti`, `sicurezza`, `fondamenti`.
+- **Ambito:** `c`, `cpp`, `python`, `sql`, `html`, `reti`, `sicurezza`, `fondamenti`.
 - **Tipo:** `escape-room`, `flashcard`, `quiz`, `mappe-mentali`.
 - **Attività:** titolo in minuscolo, parole separate da trattini (kebab-case), senza spazi né caratteri speciali.
-- **Autonomia:** ogni attività contiene tutti i propri file (struttura, stile e comportamento separati) e non dipende da altre cartelle, così può essere spostata o copiata senza modifiche.
+- **Autonomia:** ogni attività contiene tutti i propri file (struttura, stile e comportamento separati, più le eventuali immagini nella sottocartella `immagini/`) e non dipende da altre cartelle, così può essere spostata o copiata senza modifiche.
 
 ## Avvertenza
 
-Le attività sono pensate per l'esercitazione e il ripasso, non per la valutazione.
-Trattandosi di pagine eseguite nel browser, le risposte possono essere ricavate dal codice sorgente da chi lo desidera.
+Le attività sono pensate per l'esercitazione e il ripasso, non per la valutazione. Trattandosi di pagine eseguite nel browser, le risposte possono essere ricavate dal codice sorgente da chi lo desidera.
 
 ## Licenza
 
