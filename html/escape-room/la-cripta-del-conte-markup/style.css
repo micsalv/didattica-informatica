@@ -1,0 +1,764 @@
+/*
+    Autore: Michele Salvemini
+    Classe: studenti che hanno svolto le esercitazioni HTML (HTM010-HTM170)
+    Argomento: Foglio di stile dell'Escape Room "La Cripta del Conte Markup"
+    Obiettivo: Definire l'aspetto grafico della pagina (tema gotico rosso sangue, oro e pergamena)
+    Versione: 1.1
+    Data: 25/10/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+*/
+
+/* ============================================================
+   COLORI E MISURE (variabili riutilizzate in tutto il foglio)
+   ============================================================ */
+
+:root {
+    --sfondo: #12060a;
+    --sfondo-scuro: #08030a;
+    --rosso: #a30f26;
+    --rosso-vivo: #d6203a;
+    --rosso-scuro: #5c0a17;
+    --oro: #c9a24b;
+    --oro-chiaro: #e8cf8d;
+    --pergamena: #f4ead3;
+    --pergamena-scura: #e6d5ae;
+    --inchiostro: #2a1410;
+    --verde-ok: #2f6b3f;
+    --bordo-arrotondato: 10px;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+/* Azzera i margini predefiniti e include padding e bordo nella larghezza degli elementi,
+   così le dimensioni dichiarate coincidono con quelle effettive */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Palatino Linotype', 'Times New Roman', serif;
+    background: var(--sfondo);
+    background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(163, 15, 38, 0.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(92, 10, 23, 0.40) 0%, transparent 55%);
+    background-attachment: fixed;
+    color: var(--pergamena);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 20px;
+    /* Evita lo scorrimento orizzontale causato dai pipistrelli che escono dallo schermo */
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 860px;
+    margin: 0 auto;
+    /* Con z-index maggiore delle decorazioni il contenuto resta sopra lo sfondo animato */
+    position: relative;
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ============================================================
+   DECORAZIONI: PIPISTRELLI E GOCCE
+   ============================================================ */
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Le decorazioni non devono intercettare i click destinati ai pulsanti sottostanti */
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bat {
+    position: absolute;
+    left: 0;
+    opacity: 0.35;
+    animation: voloPipistrello linear infinite;
+}
+
+/* Il pipistrello attraversa lo schermo da sinistra a destra, oscillando in verticale */
+@keyframes voloPipistrello {
+    0% {
+        transform: translate(-10vw, 0);
+    }
+    25% {
+        transform: translate(20vw, -4vh);
+    }
+    50% {
+        transform: translate(50vw, 3vh);
+    }
+    75% {
+        transform: translate(80vw, -3vh);
+    }
+    100% {
+        transform: translate(110vw, 2vh);
+    }
+}
+
+/* La goccia è un quadrato con tre angoli arrotondati e uno a punta, ruotato di 45 gradi */
+.drop {
+    position: absolute;
+    top: -20px;
+    background: var(--rosso-vivo);
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(45deg);
+    opacity: 0.25;
+    animation: cadutaGoccia linear infinite;
+}
+
+@keyframes cadutaGoccia {
+    0% {
+        top: -20px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.30;
+    }
+    100% {
+        top: 105vh;
+        opacity: 0.10;
+    }
+}
+
+/* ============================================================
+   INTESTAZIONE
+   ============================================================ */
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 30px 20px 25px;
+    margin-bottom: 25px;
+    border-radius: var(--bordo-arrotondato);
+    background: linear-gradient(180deg, #2a0710 0%, var(--sfondo-scuro) 100%);
+    border: 2px solid var(--oro);
+    box-shadow: 0 0 30px rgba(163, 15, 38, 0.45);
+    overflow: hidden;
+}
+
+/* La luna è un cerchio sfumato in alto a destra, dietro alla silhouette */
+.moon {
+    position: absolute;
+    top: 18px;
+    right: 28px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff6dc 0%, var(--oro-chiaro) 55%, #b8964a 100%);
+    box-shadow: 0 0 30px rgba(232, 207, 141, 0.55);
+}
+
+.castle {
+    position: relative;
+    display: block;
+    width: min(100%, 360px);
+    margin: 0 auto 10px;
+}
+
+.castle-body {
+    fill: #030103;
+}
+
+.castle-windows {
+    fill: var(--oro-chiaro);
+    animation: lucePiccola 3s ease-in-out infinite alternate;
+}
+
+@keyframes lucePiccola {
+    from {
+        opacity: 0.55;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.hero h1 {
+    position: relative;
+    font-size: 1.9rem;
+    letter-spacing: 3px;
+    color: var(--oro-chiaro);
+    text-shadow: 0 0 14px var(--rosso);
+}
+
+.subtitle {
+    position: relative;
+    margin-top: 6px;
+    font-style: italic;
+    color: var(--pergamena-scura);
+}
+
+/* ============================================================
+   INTRODUZIONE
+   ============================================================ */
+
+.intro {
+    background: rgba(244, 234, 211, 0.06);
+    border: 1px solid var(--rosso);
+    border-left: 6px solid var(--rosso);
+    border-radius: var(--bordo-arrotondato);
+    padding: 20px 24px;
+    margin-bottom: 22px;
+}
+
+.intro p {
+    margin-bottom: 12px;
+}
+
+.intro ul {
+    margin: 0 0 14px 22px;
+}
+
+.intro li {
+    margin-bottom: 4px;
+}
+
+.highlight {
+    color: var(--oro-chiaro);
+    font-weight: bold;
+}
+
+.notice {
+    margin-top: 6px;
+    padding: 10px 14px;
+    border: 1px dashed var(--oro);
+    border-radius: 8px;
+    font-style: italic;
+    color: var(--pergamena-scura);
+}
+
+/* ============================================================
+   PULSANTI PRINCIPALI
+   ============================================================ */
+
+.start-area {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.start-btn,
+.next-btn,
+.reset-btn {
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--pergamena);
+    background: linear-gradient(180deg, var(--rosso-vivo) 0%, var(--rosso-scuro) 100%);
+    border: 2px solid var(--oro);
+    border-radius: 30px;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.start-btn:hover,
+.next-btn:hover,
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(214, 32, 58, 0.5);
+}
+
+/* ============================================================
+   STATISTICHE E PROGRESSO
+   ============================================================ */
+
+.stats-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.stat {
+    background: var(--sfondo-scuro);
+    border: 1px solid var(--oro);
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: var(--pergamena-scura);
+}
+
+.stat-value {
+    margin-left: 6px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: var(--oro-chiaro);
+}
+
+.bonus-badge {
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.bonus-ok {
+    background: rgba(47, 107, 63, 0.35);
+    border: 1px solid #5fb07a;
+    color: #b9efc9;
+}
+
+.bonus-perso {
+    background: rgba(163, 15, 38, 0.30);
+    border: 1px solid var(--rosso-vivo);
+    color: #f6b3bd;
+}
+
+.progress-bar-container {
+    margin-bottom: 24px;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    color: var(--pergamena-scura);
+}
+
+/* La barra è un "calice" che si riempie di sangue man mano che si risolvono gli enigmi */
+.progress-track {
+    height: 16px;
+    background: var(--sfondo-scuro);
+    border: 1px solid var(--oro);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--rosso-scuro), var(--rosso-vivo));
+    transition: width 0.5s ease;
+}
+
+/* ============================================================
+   CARD DELL'ENIGMA (pergamena)
+   ============================================================ */
+
+.card {
+    background: linear-gradient(180deg, var(--pergamena) 0%, var(--pergamena-scura) 100%);
+    color: var(--inchiostro);
+    border: 3px double var(--oro);
+    border-radius: var(--bordo-arrotondato);
+    padding: 22px;
+    margin-bottom: 26px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.card.solved {
+    border-color: var(--verde-ok);
+}
+
+/* Scuotimento della card quando la risposta è sbagliata (dura 0,5 s) */
+.card.wrong {
+    animation: scuoti 0.5s;
+}
+
+@keyframes scuoti {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20%, 60% {
+        transform: translateX(-8px);
+    }
+    40%, 80% {
+        transform: translateX(8px);
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.card-number {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--rosso);
+    color: var(--pergamena);
+    border: 2px solid var(--oro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.card-heading {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--rosso-scuro);
+}
+
+/* Il luogo indica in quale stanza del castello si trova lo studente */
+.card-place {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--rosso);
+}
+
+/* L'immagine occupa tutta la larghezza della card; aspect-ratio riserva lo spazio prima del
+   caricamento, così la pagina non "salta" quando l'immagine compare */
+.card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1280 / 698;
+    object-fit: cover;
+    margin-bottom: 14px;
+    background: var(--sfondo-scuro);
+    border: 2px solid var(--oro);
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.card-scene {
+    font-style: italic;
+    margin-bottom: 12px;
+}
+
+.card-code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.92rem;
+    background: #231016;
+    color: var(--oro-chiaro);
+    border-left: 4px solid var(--rosso-vivo);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    /* Il codice lungo scorre dentro il riquadro invece di allargare la pagina */
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.card-question {
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+code.inline {
+    font-family: 'Courier New', monospace;
+    font-size: 0.92em;
+    background: rgba(92, 10, 23, 0.12);
+    color: var(--rosso-scuro);
+    border-radius: 4px;
+    padding: 1px 5px;
+}
+
+/* ============================================================
+   RISPOSTE
+   ============================================================ */
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--inchiostro);
+    background: var(--pergamena);
+    border: 2px solid var(--oro);
+    border-radius: 8px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.option:hover:not(:disabled) {
+    border-color: var(--rosso-vivo);
+    background: #fff6e0;
+}
+
+.option:disabled {
+    cursor: default;
+    opacity: 0.75;
+}
+
+.option-letter {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--rosso-scuro);
+    color: var(--pergamena);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.option.selected-correct {
+    background: #d6efdc;
+    border-color: var(--verde-ok);
+    opacity: 1;
+}
+
+.option.selected-wrong {
+    background: #f6d3d9;
+    border-color: var(--rosso);
+}
+
+/* ============================================================
+   FEEDBACK E AVANZAMENTO
+   ============================================================ */
+
+.feedback {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+}
+
+.feedback.show {
+    display: block;
+}
+
+.feedback.correct {
+    background: #d6efdc;
+    border: 1px solid var(--verde-ok);
+}
+
+.feedback.wrong {
+    background: #f6d3d9;
+    border: 1px solid var(--rosso);
+}
+
+.next-btn {
+    display: none;
+    margin: 16px auto 0;
+}
+
+.next-btn.show {
+    display: block;
+}
+
+.waiting-screen {
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 30px;
+    color: var(--oro-chiaro);
+}
+
+/* ============================================================
+   LETTERE RACCOLTE
+   ============================================================ */
+
+.letters-collected {
+    text-align: center;
+    margin-bottom: 26px;
+    padding: 16px;
+    background: rgba(244, 234, 211, 0.05);
+    border: 1px solid var(--oro);
+    border-radius: var(--bordo-arrotondato);
+}
+
+.letters-collected h3 {
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    color: var(--oro-chiaro);
+}
+
+/* Le caselle sono raggruppate per parola della frase finale; i gruppi vanno a capo se manca spazio */
+.letters-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 22px;
+}
+
+.letter-word {
+    display: flex;
+    gap: 4px;
+}
+
+.letter-slot {
+    width: 30px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background: var(--sfondo-scuro);
+    border: 1px solid var(--rosso-scuro);
+    border-radius: 4px;
+    color: #6d4a50;
+}
+
+.letter-slot.filled {
+    background: var(--rosso);
+    border-color: var(--oro);
+    color: var(--pergamena);
+    box-shadow: 0 0 8px rgba(214, 32, 58, 0.6);
+}
+
+/* ============================================================
+   SEZIONE FINALE
+   ============================================================ */
+
+.final-section {
+    display: none;
+    text-align: center;
+    padding: 28px 22px;
+    margin-bottom: 26px;
+    background: linear-gradient(180deg, #3b0a14 0%, var(--sfondo-scuro) 100%);
+    border: 3px double var(--oro);
+    border-radius: var(--bordo-arrotondato);
+}
+
+.final-section.show {
+    display: block;
+}
+
+.final-section h2 {
+    color: var(--oro-chiaro);
+    margin-bottom: 10px;
+}
+
+.key-display {
+    display: inline-block;
+    margin: 12px 0 20px;
+    padding: 12px 22px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: var(--pergamena);
+    background: var(--rosso);
+    border: 2px solid var(--oro);
+    border-radius: 8px;
+}
+
+/* Il riepilogo è una lista descrittiva: termini a sinistra e valori a destra */
+.summary-list {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 20px;
+    max-width: 440px;
+    margin: 0 auto 20px;
+    text-align: left;
+}
+
+.summary-list dt {
+    color: var(--pergamena-scura);
+}
+
+.summary-list dd {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: right;
+    color: var(--oro-chiaro);
+}
+
+.summary-list .total-term,
+.summary-list .total-detail {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--oro);
+    font-size: 1.1rem;
+}
+
+.final-message {
+    margin-bottom: 14px;
+    line-height: 1.7;
+}
+
+.final-message .emoji {
+    display: block;
+    font-size: 2rem;
+}
+
+.final-note {
+    margin-bottom: 16px;
+    font-style: italic;
+    color: var(--pergamena-scura);
+}
+
+.license-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--pergamena-scura);
+    padding-bottom: 20px;
+}
+
+.license-note a {
+    color: var(--oro-chiaro);
+}
+
+.credits {
+    margin-bottom: 4px;
+    font-style: italic;
+}
+
+/* ============================================================
+   SCHERMI PICCOLI E PREFERENZE DI ACCESSIBILITÀ
+   ============================================================ */
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .hero h1 {
+        font-size: 1.35rem;
+        letter-spacing: 1px;
+    }
+
+    .moon {
+        width: 44px;
+        height: 44px;
+        right: 16px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .key-display {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+}
+
+/* Chi ha chiesto al sistema di ridurre i movimenti non vede animazioni di sfondo né scuotimenti */
+@media (prefers-reduced-motion: reduce) {
+    .bat,
+    .drop,
+    .castle-windows,
+    .card.wrong {
+        animation: none;
+    }
+
+    .progress-fill {
+        transition: none;
+    }
+}

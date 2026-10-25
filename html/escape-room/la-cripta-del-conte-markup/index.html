@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--
+    Autore: Michele Salvemini
+    Classe: studenti che hanno svolto le esercitazioni HTML (HTM010-HTM170)
+    Argomento: HTML5 - struttura del documento, testi, liste, tabelle, immagini e collegamenti
+    Obiettivo: Escape room a enigmi a risposta multipla per ripassare la lettura e la
+               correzione del codice HTML, con cronometro e punteggio
+    Versione: 1.1
+    Data: 25/10/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+    File: index.html (struttura) - style.css (stile) - script.js (comportamento)
+-->
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Michele Salvemini">
+        <meta name="description" content="Escape room di Halloween a tema vampiri per ripassare l'HTML5: struttura del documento, testi, liste, tabelle, immagini e collegamenti ipertestuali.">
+        <meta name="keywords" content="informatica, HTML, HTML5, struttura del documento, liste, tabelle, immagini, collegamenti, escape room, ripasso, Halloween, vampiri, liceo scientifico scienze applicate">
+        <title>🦇 La Cripta del Conte Markup</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+    </head>
+    <body>
+        <!-- ============================================================
+             STRUTTURA
+             ============================================================ -->
+
+        <!-- Contenitore di pipistrelli e gocce decorative, popolato dallo script -->
+        <div class="particles" id="particles"></div>
+
+        <div class="container">
+            <header class="hero">
+                <div class="moon"></div>
+
+                <!-- Silhouette decorativa del castello, disegnata con forme SVG -->
+                <svg class="castle" viewBox="0 0 400 130" role="img" aria-label="Silhouette del castello del Conte Markup">
+                    <g class="castle-body">
+                        <rect x="20" y="75" width="360" height="55"></rect>
+                        <rect x="40" y="38" width="36" height="92"></rect>
+                        <polygon points="34,38 58,8 82,38"></polygon>
+                        <rect x="170" y="30" width="60" height="100"></rect>
+                        <polygon points="162,30 200,2 238,30"></polygon>
+                        <rect x="324" y="45" width="36" height="85"></rect>
+                        <polygon points="318,45 342,17 366,45"></polygon>
+                    </g>
+                    <g class="castle-windows">
+                        <rect x="55" y="58" width="6" height="12"></rect>
+                        <rect x="193" y="52" width="14" height="20"></rect>
+                        <rect x="339" y="64" width="6" height="12"></rect>
+                        <rect x="110" y="95" width="8" height="14"></rect>
+                        <rect x="285" y="95" width="8" height="14"></rect>
+                    </g>
+                </svg>
+
+                <h1>🦇 LA CRIPTA DEL CONTE MARKUP 🦇</h1>
+                <p class="subtitle">Fuggi dal castello prima dell'alba</p>
+            </header>
+
+            <div class="intro">
+                <p>
+                    Una notte di Halloween sei entrato nel castello del
+                    <span class="highlight">Conte Markup</span>, un vampiro che da secoli
+                    parla soltanto il linguaggio HTML. Il portone si è chiuso alle tue spalle.
+                </p>
+                <p>
+                    Il Conte ti concede una sola via d'uscita: attraversare il castello, dal cortile alla soffitta,
+                    dalla biblioteca segreta alla cripta, fino alla torre e alle rovine, e tornare al portone
+                    prima dell'alba. In ogni stanza ti aspetta un enigma.
+                </p>
+                <p>
+                    Devi superare <span class="highlight"><span id="totale-enigmi">20</span> enigmi</span>
+                    uno alla volta, leggendo codice HTML e trovando gli errori. Ogni risposta corretta
+                    ti fa guadagnare una <strong>lettera</strong> della frase che apre il portone.
+                </p>
+                <ul>
+                    <li>Leggi il codice con attenzione</li>
+                    <li>Scegli una delle tre risposte</li>
+                    <li>Se sbagli puoi riprovare, senza limiti di tentativi</li>
+                    <li>Risposta corretta: +<span id="regola-punti">5</span> pt. Errore: −<span id="regola-penalita">1</span> pt</li>
+                    <li>
+                        Bonus di +<span id="regola-bonus">10</span> pt se finisci entro
+                        <span id="regola-minuti">40</span> minuti con al massimo
+                        <span id="regola-errori">4</span> errori
+                    </li>
+                    <li>Il cronometro parte quando premi «Entra nel castello»</li>
+                    <li>Gli enigmi diventano sempre più difficili: non avere fretta</li>
+                </ul>
+                <p class="notice">
+                    🧄 Attività ludica per ripassare e studiare: barare è possibile, ma non serve a nulla.
+                    A questo punto, meglio non giocare.
+                </p>
+            </div>
+
+            <!-- Pulsante di avvio: il cronometro parte solo dopo aver letto le regole -->
+            <div class="start-area" id="start-area">
+                <button class="start-btn" id="start-btn" type="button">🦇 Entra nel castello</button>
+            </div>
+
+            <!-- Cronometro, punteggio, errori e stato del bonus, aggiornati dallo script -->
+            <div class="stats-panel">
+                <div class="stat">⏳ Tempo <span class="stat-value" id="timer-text">00:00</span></div>
+                <div class="stat">🩸 Punti <span class="stat-value" id="score-text">0</span></div>
+                <div class="stat">❌ Errori <span class="stat-value" id="errors-text">0</span></div>
+                <div class="bonus-badge bonus-ok" id="bonus-text">🌙 Bonus ancora possibile</div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-label">
+                    <span>🍷 Enigmi risolti</span>
+                    <span id="progress-text">0 / 20</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Area in cui lo script inserisce l'enigma corrente -->
+            <div id="card-area"></div>
+
+            <div class="letters-collected" id="letters-box">
+                <h3>🗝️ LETTERE RACCOLTE</h3>
+                <div class="letters-row" id="letters-row"></div>
+            </div>
+
+            <div class="final-section" id="final-section">
+                <h2>🌅 IL PORTONE SI È APERTO! 🌅</h2>
+                <p class="final-label">La frase che hai raccolto è:</p>
+                <div class="key-display" id="key-display"></div>
+
+                <!-- Riepilogo scritto con una lista descrittiva: ogni voce è una coppia termine-valore -->
+                <dl class="summary-list">
+                    <dt>⏳ Tempo impiegato</dt>
+                    <dd id="sum-tempo"></dd>
+                    <dt>✅ Risposte corrette</dt>
+                    <dd id="sum-corrette"></dd>
+                    <dt>❌ Errori commessi</dt>
+                    <dd id="sum-errori"></dd>
+                    <dt>🌙 Bonus</dt>
+                    <dd id="sum-bonus"></dd>
+                    <dt class="total-term">🩸 Punteggio totale</dt>
+                    <dd class="total-detail" id="sum-totale"></dd>
+                </dl>
+
+                <div class="final-message">
+                    <span class="emoji">🌅🏰</span>
+                    Complimenti! I primi raggi del sole colpiscono il castello e il Conte Markup si ritira nella sua bara.<br>
+                    Sei fuggito... per questa notte. 🦇
+                </div>
+                <p class="final-note">📸 Mostra questa schermata al docente per il riconoscimento del punteggio.</p>
+                <button class="reset-btn" id="reset-btn" type="button">🔄 Ricomincia l'avventura</button>
+            </div>
+
+            <footer class="license-note">
+                <p class="credits">Illustrazioni generate con l'intelligenza artificiale Gemini (Google).</p>
+                <p>
+                    © 2026 Michele Salvemini –
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>
+                </p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
