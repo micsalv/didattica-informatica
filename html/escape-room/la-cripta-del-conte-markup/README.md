@@ -4,18 +4,11 @@ Escape room di Halloween a tema vampiri, a risposta multipla, per ripassare l'HT
 
 **Autore:** Michele Salvemini
 **Versione:** 1.1
-**Apri l'attività:** https://micsalv.github.io/didattica-informatica/html/escape-room/la-cripta-del-conte-markup/ (indirizzo previsto, da verificare dopo la pubblicazione)
+**Apri l'attività:** https://micsalv.github.io/didattica-informatica/html/escape-room/la-cripta-del-conte-markup/
 
 ## Obiettivo
 
-Esercitarsi a leggere e correggere codice HTML5 sugli argomenti delle dispense e delle esercitazioni HTM:
-
-- struttura del documento (`DOCTYPE`, `html`, `head`, `body`);
-- testi (titoli, `strong` ed `em` contro `b` e `i`, `pre`);
-- liste ordinate, non ordinate, descrittive e annidate (`type`, `start`, `reversed`);
-- tabelle (`caption`, `th`, `td`, `rowspan`, `colspan`, contabilità delle celle);
-- immagini e collegamenti (`alt`, `title`, `target`, ancore interne, `mailto`, immagine dentro un link);
-- errori comuni e buone pratiche.
+Esercitarsi a leggere e correggere codice HTML5 sugli argomenti delle dispense e delle esercitazioni HTML svolte a lezione:
 
 ## Destinatari
 
@@ -55,16 +48,7 @@ Il punteggio massimo è 110 punti (20 × 5 + 10 di bonus). I valori sono costant
 Le 20 illustrazioni sono state generate con l'intelligenza artificiale **Gemini** (Google) a partire da indicazioni scritte dall'autore, che le ha selezionate. Non raffigurano persone reali.
 
 - Formato: JPG, 1280 × 698 pixel, circa 90-170 KB ciascuna, una per ogni stanza. I nomi seguono lo schema `room-NN-nome.jpg`.
-- Sono state convertite dai file originali (`.jfif`) in `.jpg`; in cinque immagini è stata ritagliata la cornice nera generata insieme al disegno.
-- Ogni immagine ha un testo alternativo (`alt`), scritto nel file `script.js` insieme agli altri dati dell'enigma, che ne descrive il contenuto senza rivelare la risposta.
 - Il file `LICENSE` del repository si applica al codice e ai testi. Per le illustrazioni valgono le condizioni d'uso del servizio con cui sono state generate.
-
-## Cronologia
-
-| Versione | Data | Modifiche |
-|---|---|---|
-| 1.1 | 25/10/2026 | Illustrazioni per ogni stanza, luogo e trama continua come percorso nel castello, precaricamento dell'immagine successiva |
-| 1.0 | 25/10/2026 | Prima versione: 20 enigmi, cronometro, punteggio con bonus, frase finale a lettere raggruppate |
 
 ## Licenza
 
