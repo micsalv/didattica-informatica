@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+    Autore: Michele Salvemini
+    Classe: studenti che hanno svolto le esercitazioni di C sulla struttura sequenza (SEQ010-SEQ270)
+    Argomento: Linguaggio C - struttura sequenza, operatori, char/ASCII e numeri casuali
+    Obiettivo: Escape room a enigmi a risposta multipla per ripassare la lettura del codice C, con cronometro e punteggio
+    Versione: 1.0
+    Data: 28/10/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+    File: index.html (struttura) - style.css (stile) - script.js (comportamento)
+-->
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Michele Salvemini">
+        <meta name="description" content="Escape room a tema lupi mannari per ripassare il linguaggio C: struttura sequenza, operatori, char e ASCII, numeri e caratteri casuali con rand().">
+        <meta name="keywords" content="informatica, linguaggio C, struttura sequenza, printf, scanf, rand, ASCII, cast, escape room, ripasso, lupi mannari, liceo scientifico scienze applicate">
+        <title>🐺 La Notte del Lupo Rand</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+    </head>
+    <body>
+        <!-- ============================================================
+             STRUTTURA
+             ============================================================ -->
+
+        <!-- Contenitore di lupi e gocce di pioggia decorativi, popolato dallo script -->
+        <div class="particles" id="particles"></div>
+
+        <div class="container">
+			<div class="github-star-top">
+                <a href="https://github.com/micsalv/didattica-informatica" target="_blank" rel="noopener">
+                    ⭐ Lascia una stella su GitHub
+                </a>
+            </div>
+            <header class="hero">
+                <div class="moon"></div>
+
+                <!-- Silhouette decorativa del villaggio, disegnata con forme SVG -->
+                <svg class="castle" viewBox="0 0 400 130" role="img" aria-label="Silhouette del villaggio di Valpelosa">
+                    <g class="castle-body">
+                        <rect x="10" y="85" width="380" height="45"></rect>
+                        <rect x="30" y="65" width="50" height="40"></rect>
+                        <polygon points="24,65 55,40 86,65"></polygon>
+                        <rect x="175" y="25" width="34" height="105"></rect>
+                        <polygon points="169,25 192,2 215,25"></polygon>
+                        <rect x="270" y="60" width="60" height="45"></rect>
+                        <polygon points="264,60 300,35 336,60"></polygon>
+                        <rect x="345" y="75" width="35" height="30"></rect>
+                        <polygon points="340,75 362,55 384,75"></polygon>
+                    </g>
+                    <g class="castle-windows">
+                        <rect x="48" y="78" width="8" height="12"></rect>
+                        <rect x="185" y="50" width="14" height="20"></rect>
+                        <rect x="293" y="75" width="8" height="12"></rect>
+                        <rect x="357" y="85" width="6" height="10"></rect>
+                    </g>
+                </svg>
+
+                <h1>🐺 LA NOTTE DEL LUPO RAND 🐺</h1>
+                <p class="subtitle">Ferma il lupo prima dell'alba</p>
+            </header>
+
+            <div class="intro">
+                <p>
+                    Una notte di luna piena sei arrivato a Valpelosa, un villaggio di montagna tormentato dal
+                    <span class="highlight">Lupo Rand</span>, un lupo mannaro che si trasforma a caso e parla soltanto
+                    il linguaggio C. Il cancello si è chiuso alle tue spalle.
+                </p>
+                <p>
+                    Per salvare il villaggio devi attraversarlo dal cancello al covo, passando per la locanda, il campanile,
+                    il bosco, la radura e la cripta, e fermare il lupo con la luce d'argento prima dell'alba.
+                    In ogni tappa ti aspetta un enigma.
+                </p>
+                <p>
+                    Devi superare <span class="highlight"><span id="totale-enigmi">20</span> enigmi</span>
+                    uno alla volta, leggendo codice C e ragionando sul risultato. Ogni risposta corretta
+                    ti fa guadagnare una <strong>lettera</strong> della frase che accende la luce.
+                </p>
+                <ul>
+                    <li>Leggi il codice con attenzione</li>
+                    <li>Scegli una delle tre risposte</li>
+                    <li>Se sbagli puoi riprovare, senza limiti di tentativi</li>
+                    <li>Risposta corretta: +<span id="regola-punti">5</span> pt. Errore: −<span id="regola-penalita">1</span> pt</li>
+                    <li>
+                        Bonus di +<span id="regola-bonus">10</span> pt se finisci entro
+                        <span id="regola-minuti">40</span> minuti con al massimo
+                        <span id="regola-errori">4</span> errori
+                    </li>
+                    <li>Il cronometro parte quando premi «Entra nel villaggio»</li>
+                    <li>Gli enigmi diventano sempre più difficili: non avere fretta</li>
+                </ul>
+                <p class="notice">
+                    🌕 Attività ludica per ripassare e studiare: barare è possibile, ma non serve a nulla.
+                    A questo punto, meglio non giocare.
+                </p>
+            </div>
+
+            <!-- Pulsante di avvio: il cronometro parte solo dopo aver letto le regole -->
+            <div class="start-area" id="start-area">
+                <button class="start-btn" id="start-btn" type="button">🐺 Entra nel villaggio</button>
+            </div>
+
+            <!-- Cronometro, punteggio, errori e stato del bonus, aggiornati dallo script -->
+            <div class="stats-panel">
+                <div class="stat">⏳ Tempo <span class="stat-value" id="timer-text">00:00</span></div>
+                <div class="stat">🏆 Punti <span class="stat-value" id="score-text">0</span></div>
+                <div class="stat">❌ Errori <span class="stat-value" id="errors-text">0</span></div>
+                <div class="bonus-badge bonus-ok" id="bonus-text">🌙 Bonus ancora possibile</div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-label">
+                    <span>🐾 Enigmi risolti</span>
+                    <span id="progress-text">0 / 20</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Area in cui lo script inserisce l'enigma corrente -->
+            <div id="card-area"></div>
+
+            <div class="letters-collected" id="letters-box">
+                <h3>🗝️ LETTERE RACCOLTE</h3>
+                <div class="letters-row" id="letters-row"></div>
+            </div>
+
+            <div class="final-section" id="final-section">
+                <h2>🌅 IL LUPO È FERMO! 🌅</h2>
+                <p class="final-label">La frase che hai raccolto è:</p>
+                <div class="key-display" id="key-display"></div>
+
+                <!-- Riepilogo scritto con una lista descrittiva: ogni voce è una coppia termine-valore -->
+                <dl class="summary-list">
+                    <dt>⏳ Tempo impiegato</dt>
+                    <dd id="sum-tempo"></dd>
+                    <dt>✅ Risposte corrette</dt>
+                    <dd id="sum-corrette"></dd>
+                    <dt>❌ Errori commessi</dt>
+                    <dd id="sum-errori"></dd>
+                    <dt>🌙 Bonus</dt>
+                    <dd id="sum-bonus"></dd>
+                    <dt class="total-term">🏆 Punteggio totale</dt>
+                    <dd class="total-detail" id="sum-totale"></dd>
+                </dl>
+
+                <div class="final-message">
+                    <span class="emoji">🌕🐺</span>
+                    Complimenti! La luce d'argento colpisce il Lupo Rand: il lupo torna uomo e Valpelosa è salva.<br>
+                    L'alba è arrivata. Per questa notte sei al sicuro. 🐺
+                </div>
+                <p class="final-note">📸 Mostra questa schermata al docente per il riconoscimento del punteggio.</p>
+                <button class="reset-btn" id="reset-btn" type="button">🔄 Ricomincia l'avventura</button>
+            </div>
+
+            <footer class="license-note">
+                <p class="credits">Illustrazioni generate con l'intelligenza artificiale Gemini (Google).</p>
+                <p>
+                    © 2026 Michele Salvemini –
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>
+                </p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
