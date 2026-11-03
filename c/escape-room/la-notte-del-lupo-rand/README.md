@@ -55,7 +55,7 @@ Il punteggio massimo è 110 punti (20 × 5 + 10 di bonus). I valori sono costant
 
 Le 20 illustrazioni sono state generate con l'intelligenza artificiale **Gemini** (Google) a partire da indicazioni scritte dall'autore, che le ha selezionate. Non raffigurano persone reali.
 
-- Formato: JPG, 1280 × 698 pixel, una per ogni tappa. I nomi seguono lo schema `room-NN-nome.jpg`.
+- I nomi seguono lo schema `room-NN-nome.jpg`.
 - Il file `LICENSE` del repository si applica al codice e ai testi. Per le illustrazioni valgono le condizioni d'uso del servizio con cui sono state generate.
 
 ## Licenza
