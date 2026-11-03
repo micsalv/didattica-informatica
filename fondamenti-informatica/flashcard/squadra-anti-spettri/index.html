@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+    Autore: Michele Salvemini
+    Classe: Prime - ripasso per la verifica su architettura degli elaboratori e sistema operativo (Lez07 e Lez08)
+    Argomento: Fondamenti di Informatica - architettura degli elaboratori e sistema operativo
+    Obiettivo: Flash card di ripasso generale con autovalutazione, nello stesso tema grafico dell'escape room "La Squadra Anti-Spettri"
+    Versione: 1.1
+    Data: 03/11/2026
+    Licenza: CC BY-NC-ND 4.0 - https://creativecommons.org/licenses/by-nc-nd/4.0/
+    File: index.html (struttura) - style.css (stile) - script.js (comportamento)
+-->
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Michele Salvemini">
+        <meta name="description" content="Flash card di ripasso generale a tema Halloween (Squadra Anti-Spettri) su architettura degli elaboratori e sistema operativo: 44 carte con autovalutazione, filtri per argomento e testo regolabile.">
+        <meta name="keywords" content="informatica, flash card, ripasso, architettura degli elaboratori, sistema operativo, CPU, RAM, driver, bootstrap, processi, liceo scientifico scienze applicate">
+        <title>🃏 Le Carte della Squadra</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+    </head>
+    <body>
+        <!-- ============================================================
+             STRUTTURA
+             ============================================================ -->
+
+        <!-- Contenitore di fantasmi e gocce di ectoplasma decorativi, popolato dallo script -->
+        <div class="particles" id="particles"></div>
+
+        <div class="container">
+            <div class="github-star-top">
+                <a href="https://github.com/micsalv/didattica-informatica" target="_blank" rel="noopener">
+                    ⭐ Lascia una stella su GitHub
+                </a>
+            </div>
+            <header class="hero">
+                <div class="moon"></div>
+
+                <!-- Silhouette decorativa della Sede, disegnata con forme SVG -->
+                <svg class="castle" viewBox="0 0 400 130" role="img" aria-label="Silhouette della Sede della Squadra Anti-Spettri a Binaropoli">
+                    <g class="castle-body">
+                        <rect x="0" y="100" width="400" height="30"></rect>
+                        <rect x="15" y="70" width="42" height="60"></rect>
+                        <rect x="65" y="50" width="52" height="80"></rect>
+                        <polygon points="59,50 91,30 123,50"></polygon>
+                        <rect x="130" y="85" width="55" height="45"></rect>
+                        <rect x="198" y="20" width="44" height="110"></rect>
+                        <polygon points="192,20 220,4 248,20"></polygon>
+                        <rect x="219" y="0" width="2" height="6"></rect>
+                        <rect x="262" y="60" width="56" height="70"></rect>
+                        <rect x="330" y="78" width="50" height="52"></rect>
+                    </g>
+                    <g class="castle-windows">
+                        <rect x="24" y="82" width="8" height="12"></rect>
+                        <rect x="85" y="68" width="10" height="14"></rect>
+                        <rect x="210" y="45" width="20" height="26"></rect>
+                        <rect x="278" y="76" width="8" height="12"></rect>
+                        <rect x="345" y="92" width="8" height="10"></rect>
+                    </g>
+                    <path class="castle-ghost" d="M150 78 q0 -22 14 -22 q14 0 14 22 v20 l-5 -5 l-4.5 5 l-4.5 -5 l-4.5 5 l-4.5 -5 l-5 5 z"></path>
+                </svg>
+
+                <h1>🃏 LE CARTE DELLA SQUADRA 🃏</h1>
+                <p class="subtitle">Ripasso generale per la Squadra Anti-Spettri</p>
+            </header>
+
+            <div class="intro">
+                <p>
+                    Ogni carta è un attrezzo della Squadra. Leggi la domanda, prova a rispondere con la tua testa,
+                    poi gira la carta e confronta. Se la sai, premi <strong>Lo so</strong>; se vuoi rivederla,
+                    premi <strong>Da ripassare</strong>.
+                </p>
+                <ul>
+                    <li>Ci sono <span id="totale-carte">44</span> carte su tutta la Lez07 (architettura) e la Lez08 (sistema operativo): puoi sceglierle tutte o per argomento</li>
+                    <li>Non c'è il cronometro e non ci sono punti: serve solo per studiare</li>
+                    <li>Puoi ingrandire il testo e cambiare la spaziatura con i pulsanti qui sotto</li>
+                    <li>Tasti rapidi: <kbd>←</kbd> <kbd>→</kbd> per cambiare carta, <kbd>Spazio</kbd> per girarla</li>
+                </ul>
+            </div>
+
+            <!-- Impostazioni di lettura: dimensione del testo, spaziatura e decorazioni -->
+            <div class="fc-settings" role="group" aria-label="Impostazioni di lettura">
+                <button class="fc-small-btn" id="testo-meno" type="button" aria-label="Rimpicciolisci il testo">A−</button>
+                <button class="fc-small-btn" id="testo-piu" type="button" aria-label="Ingrandisci il testo">A+</button>
+                <button class="fc-small-btn" id="spaziatura-btn" type="button" aria-pressed="true">↔ Spaziatura ampia</button>
+                <button class="fc-small-btn" id="decorazioni-btn" type="button" aria-pressed="true">✨ Decorazioni</button>
+            </div>
+
+            <!-- Scelta dell'argomento e statistiche, aggiornate dallo script -->
+            <div class="fc-toolbar">
+                <label class="fc-label" for="filtro">Argomento</label>
+                <select class="fc-select" id="filtro"></select>
+                <button class="fc-small-btn" id="mescola-btn" type="button">🔀 Mescola</button>
+            </div>
+
+            <div class="stats-panel">
+                <div class="stat">✅ Le so <span class="stat-value" id="stat-so">0</span></div>
+                <div class="stat">🔁 Da ripassare <span class="stat-value" id="stat-ripassa">0</span></div>
+                <div class="stat">🆕 Da vedere <span class="stat-value" id="stat-nuove">0</span></div>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-label">
+                    <span>🔦 Carta</span>
+                    <span id="progress-text">0 / 0</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Area in cui lo script inserisce la carta corrente -->
+            <div id="card-area" aria-live="polite"></div>
+
+            <div class="fc-controls">
+                <button class="fc-btn" id="indietro-btn" type="button">◀ Indietro</button>
+                <button class="fc-btn fc-btn-main" id="gira-btn" type="button">🔄 Gira la carta</button>
+                <button class="fc-btn" id="avanti-btn" type="button">Avanti ▶</button>
+            </div>
+
+            <div class="fc-reset">
+                <button class="reset-btn" id="azzera-btn" type="button">🧹 Azzera i miei progressi</button>
+            </div>
+
+            <footer class="license-note">
+                <p>
+                    © 2026 Michele Salvemini –
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>
+                </p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
