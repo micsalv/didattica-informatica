@@ -46,14 +46,6 @@ Il punteggio massimo è 85 punti (15 × 5 + 10 di bonus). I valori sono costanti
 | `style.css` | Stile grafico |
 | `script.js` | Enigmi, verifica delle risposte e logica del gioco |
 
-## Cronologia
-
-| Versione | Data | Modifiche |
-|---|---|---|
-| 2.2 | 11/10/2026 | Cronometro, punteggio con bonus, avviso sull'uso corretto dell'attività |
-| 2.1 | 10/10/2026 | Pubblicazione su GitHub Pages: separazione in tre file |
-| 2.0 | 10/10/2026 | Impronte al posto di risposte codificate, risposte mescolate, correzione enigmi 14 e 15 |
-
 ## Licenza
 
 © 2026 Michele Salvemini, licenza [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/): uso in classe e condivisione della versione originale con citazione dell'autore; vietati l'uso commerciale e la pubblicazione di versioni modificate. Vedi il file `LICENSE` nella radice del repository.
