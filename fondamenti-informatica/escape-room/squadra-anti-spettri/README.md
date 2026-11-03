@@ -6,7 +6,7 @@ Escape room a tema Halloween, a risposta multipla, per ripassare architettura de
 
 ## Obiettivo
 
-Ripassare i contenuti delle dispense Lez07 «Architettura degli Elaboratori: dal Dato all'Informazione» e Lez08 «Il Sistema Operativo: dai Programma ai Processi»:
+Ripassare i contenuti delle dispense Lez07 "Architettura degli Elaboratori: dal Dato all'Informazione" e Lez08 "Il Sistema Operativo: dai Programma ai Processi":
 
 - CPU: unità di controllo, ALU, registri, clock e frequenza;
 
