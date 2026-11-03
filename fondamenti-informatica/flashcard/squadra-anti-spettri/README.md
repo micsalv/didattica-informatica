@@ -2,11 +2,11 @@
 
 Flash card di ripasso generale a tema Halloween, nello stesso stile dell'escape room "La Squadra Anti-Spettri", su architettura degli elaboratori e sistema operativo: 44 carte per tutta la classe.
 
-**Autore:** Michele Salvemini **Versione:** 1.1 **Apri l'attività:**  https://micsalv.github.io/didattica-informatica/html/escape-room/la-cripta-del-conte-markup/
+**Autore:** Michele Salvemini **Versione:** 1.1 **Apri l'attività:** [https://micsalv.github.io/didattica-informatica/fondamenti-informatica/flashcard/squadra-anti-spettri/](https://micsalv.github.io/didattica-informatica/fondamenti-informatica/flashcard/squadra-anti-spettri/) 
 
 ## Obiettivo
 
-Ripassare, con definizioni brevi e autovalutazione, gli argomenti delle dispense Lez07 «Architettura degli Elaboratori: dal Dato all'Informazione» e Lez08 «Il Sistema Operativo: dai Programma ai Processi»:
+Ripassare, con definizioni brevi e autovalutazione, gli argomenti delle dispense Lez07 "Architettura degli Elaboratori: dal Dato all'Informazione" e Lez08 "Il Sistema Operativo: dai Programma ai Processi":
 
 - **Lez07 (24 carte):** dato e informazione, storia, modello di von Neumann, CPU (parti, frequenza, set di istruzioni), memorie (RAM, ROM, memorie di massa, HDD e SSD), scheda madre e case, surriscaldamento, periferiche e porte, tipi di calcolatori, hardware e software, linguaggi e compilatore;
 
