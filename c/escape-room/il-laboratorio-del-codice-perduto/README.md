@@ -46,6 +46,13 @@ Il punteggio massimo è 85 punti (15 × 5 + 10 di bonus). I valori sono costanti
 | `style.css` | Stile grafico |
 | `script.js` | Enigmi, verifica delle risposte e logica del gioco |
 
+## Illustrazioni
+
+Le 20 illustrazioni sono state generate con l'intelligenza artificiale **Gemini** (Google) a partire da indicazioni scritte dall'autore, che le ha selezionate. Non raffigurano persone reali.
+
+- I nomi seguono lo schema `room-NN-nome.jpg`.
+- Il file `LICENSE` del repository si applica al codice e ai testi. Per le illustrazioni valgono le condizioni d'uso del servizio con cui sono state generate.
+
 ## Licenza
 
 © 2026 Michele Salvemini, licenza [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/): uso in classe e condivisione della versione originale con citazione dell'autore; vietati l'uso commerciale e la pubblicazione di versioni modificate. Vedi il file `LICENSE` nella radice del repository.
