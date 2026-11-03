@@ -15,6 +15,7 @@ Le attività sono pagine web statiche: non serve installare nulla. Basta aprire 
 | C | Escape room | Il Laboratorio del Codice Perduto | Operatori composti, pre/post incremento e decremento, doppia assegnazione | [Apri](https://micsalv.github.io/didattica-informatica/c/escape-room/il-laboratorio-del-codice-perduto/) |
 | C | Escape room | La Notte del Lupo Rand | Struttura sequenza: `printf` e `scanf`, `/` e `%`, cast, `char` e ASCII, numeri e caratteri casuali con `rand()` | [Apri](https://micsalv.github.io/didattica-informatica/c/escape-room/la-notte-del-lupo-rand/) |
 | FONDAMENTI | Escape room | La Squadra Anti-Spettri | Architettura degli elaboratori e Sistema Operativi | [Apri](https://micsalv.github.io/didattica-informatica/fondamenti-informatica/escape-room/squadra-anti-spettri/) |
+| FONDAMENTI | Flash Card | Le Carte della Squadra Anti-Spettri |Flash card di ripasso generale su architettura degli elaboratori e sistema operativo | [Apri](https://micsalv.github.io/didattica-informatica/fondamenti-informatica/flashcard/squadra-anti-spettri/) |
 | HTML | Escape room | La Cripta del Conte Markup | HTML5: struttura del documento, testi, liste, tabelle, immagini e collegamenti | [Apri](https://micsalv.github.io/didattica-informatica/web/escape-room/la-cripta-del-conte-markup/) |
 
 ## Struttura del repository
