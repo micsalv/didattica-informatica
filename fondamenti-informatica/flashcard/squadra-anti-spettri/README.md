@@ -1,8 +1,8 @@
 # Le Carte della Squadra
 
-Flash card di ripasso generale a tema Halloween, nello stesso stile dell'escape room «La Squadra Anti-Spettri», su architettura degli elaboratori e sistema operativo: 44 carte per tutta la classe.
+Flash card di ripasso generale a tema Halloween, nello stesso stile dell'escape room "La Squadra Anti-Spettri", su architettura degli elaboratori e sistema operativo: 44 carte per tutta la classe.
 
-**Autore:** Michele Salvemini **Versione:** 1.1 **Apri l'attività:** *(indirizzo da definire dopo la pubblicazione)*
+**Autore:** Michele Salvemini **Versione:** 1.1 **Apri l'attività:**  https://micsalv.github.io/didattica-informatica/html/escape-room/la-cripta-del-conte-markup/
 
 ## Obiettivo
 
