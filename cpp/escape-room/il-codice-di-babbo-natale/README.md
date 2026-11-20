@@ -2,7 +2,7 @@
 
 Escape room a tema natalizio, a risposta multipla, per ripassare il linguaggio C++ sulla struttura di selezione e sugli operatori logici.
 
-**Autore:** Michele Salvemini **Versione:** 1.0 **Apri l'attività:** [(indirizzo da inserire dopo la pubblicazione su GitHub Pages)](https://micsalv.github.io/didattica-informatica/cpp/escape-room/il-codice-di-babbo-natale/index.html)
+**Autore:** Michele Salvemini **Versione:** 1.0 **Apri l'attività:** [(link)](https://micsalv.github.io/didattica-informatica/cpp/escape-room/il-codice-di-babbo-natale/index.html)
 
 ## Obiettivo
 
